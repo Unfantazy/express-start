@@ -27,7 +27,7 @@ app.get('/videos', (req: Request, res: Response ) => {
 app.get('/videos/:id', (req: Request, res: Response ) => {
     const id = +req.params.id
     const video = videos.find(video => video.id === id) ?? null
-    res.send(video ?? 404)
+    res.send(video ?? 400)
 })
 
 app.post('/videos', (req: Request, res: Response) => {
@@ -49,7 +49,7 @@ app.delete('/videos/:videoId', (req: Request, res: Response) => {
     const newVideos = videos.filter(video => video.id !== id)
     if (newVideos.length < videos.length) {
         videos = newVideos
-        res.send(200)
+        res.send(204)
     }
     res.send(404)
 })
@@ -64,7 +64,7 @@ app.put('/videos/:videoId', (req: Request, res: Response ) => {
     }
 
     video.title = req.body.title
-    res.send(200)
+    res.send(204)
 })
 
 app.listen(PORT, () => {

@@ -6,7 +6,7 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5002
 
 let videos = [
     {id: 1, title: 'About JS - 01', author: 'it-incubator.eu'},
@@ -17,7 +17,7 @@ let videos = [
 ]
 
 app.get('/', (req: Request, res: Response ) => {
-    res.send('Hello: World!')
+    res.send('Hello World!')
 })
 
 app.get('/videos', (req: Request, res: Response ) => {

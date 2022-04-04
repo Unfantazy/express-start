@@ -1,4 +1,5 @@
 import {Request, Response, Router} from 'express'
+import { inputValidatorMiddleware } from '../middlewares/input-validator-middleware'
 import { videosRepository } from '../repositories/videos-repositories'
 
 // put here array with videos
@@ -16,7 +17,9 @@ videosRouter
     res.send(video ?? 404)
 })
 // CREATE VIDEO
-.post('/', (req: Request, res: Response) => {
+.post('/',
+    inputValidatorMiddleware,
+    (req: Request, res: Response) => {
     const { title } = req.body
 
     if (!title) {
